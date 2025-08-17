@@ -71,14 +71,14 @@ def write():
         if t<homework.get_width()*homework.get_height()*3*128:
             statusBar.config(text="错误：无法识别问题")
             messagebox.showerror("错误","无法识别问题")
-            return
+            break
         statusBar.config(text="正在回答问题...")
         time.sleep(4)
         statusBar.config(text="正在生成笔迹...")
         time.sleep(2.2)
         statusBar.config(text="下载中...")
         time.sleep(1.7)
-        statusBar.config(text="正在写作业...")
+        statusBar.config(text="正在书写...")
 
         # threading.Thread(target=write_text,args=(screen,text,pygame.image.load(r"C:\Users\Admin\Documents\Writing256l.png"),0,209,80),kwargs={'ox':240,'oy':200,'width':8}).start()
         root.title("SB自动写作业")
@@ -213,4 +213,5 @@ root.resizable(False,False)
 root.title("AI自动写作业")
 root.protocol("WM_DELETE_WINDOW", sys.exit)
 threading.Thread(target=update).start()
+
 root.mainloop()
