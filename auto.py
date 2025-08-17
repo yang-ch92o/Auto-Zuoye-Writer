@@ -1,5 +1,4 @@
-import pygame,random
-import tkinter as tk
+import pygame
 from tkinter import *
 from tkinter import filedialog,messagebox
 import os
@@ -9,12 +8,12 @@ import subprocess
 import sys
 import base64
 
-root = tk.Tk()
-embed = tk.Frame(root, width = 1280, height = 720) #creates embed frame for pygame window   
+root = Tk()
+embed = Frame(root, width = 1280, height = 720) #creates embed frame for pygame window
 
-embed.grid(column=0,row=0) # Adds grid        
+embed.grid(column=0,row=0) # Adds grid
 
-uiwin = tk.Frame(root, width = 400, height = 100)
+uiwin = Frame(root, width = 400, height = 100)
 uiwin.grid(row=1,column=0,sticky=EW,padx=2,pady=2)
 
 os.environ['SDL_WINDOWID'] = str(embed.winfo_id())
@@ -35,16 +34,6 @@ homework=pygame.Surface((500,500))
     
 # embed.bind('<Enter>',handle)
 
-def game():
-    if embed is root.focus_get():
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                r = random.randint(0,255)
-                g = random.randint(0,255)
-                b = random.randint(0,255)
-                screen.fill(pygame.Color(r,g,b))
-                pygame.display.update()
-    # root.after(1000//60,game)
 
 handpath=os.path.expandvars(r"%TEMP%\hand.png")
 def write():
@@ -55,7 +44,7 @@ def write():
         entry1.config(state=DISABLED)
         root.protocol("WM_DELETE_WINDOW", lambda x:...)
         statusBar.config(text="正在请求服务器...")
-        if subprocess.call("ping www.baidu.com",stderr=subprocess.DEVNULL,stdout=subprocess.DEVNULL):
+        if subprocess.call("ping www.baidu.com",stderr=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stdin=subprocess.DEVNULL):
             statusBar.config(text="失败：服务器连接失败")
             messagebox.showerror("错误","服务器连接失败")
         statusBar.config(text="正在上传文件...")
@@ -171,10 +160,10 @@ text=[
     (6.5,4,1),
     (7.5,0,0),
     (7.5,4,1),
-    (5.7,1.6,0),
-    (6.5,2.7,1),
-    (8.3,1.6,0),
-    (7.5,2.7,1),
+    (5.7,1.3,0), # `
+    (6.5,3,1),
+    (8.3,1.3,0),# '
+    (7.5,3,1),
     (5,4,0),
     (9,4,1),
     (14,6,0)
@@ -208,10 +197,8 @@ def update():
     time.sleep(.1)
     pygame.display.update()
 # pygame.display.update()
-root.after(0,game)
 root.resizable(False,False)
 root.title("AI自动写作业")
 root.protocol("WM_DELETE_WINDOW", sys.exit)
 threading.Thread(target=update).start()
-
 root.mainloop()
