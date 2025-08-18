@@ -57,7 +57,7 @@ def write():
                 t+=homework.get_at((x,y))[1]
                 t+=homework.get_at((x,y))[2]
         time.sleep(2.2)
-        if t<homework.get_width()*homework.get_height()*3*128:
+        if t<homework.get_width()*homework.get_height()*3*160:
             statusBar.config(text="错误：无法识别问题")
             messagebox.showerror("错误","无法识别问题")
             break
